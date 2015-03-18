@@ -1,0 +1,25 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script>
+		var ws = new WebSocket("ws://refiute.moe.hm:8000");
+		ws.onmessage = function(msg) {
+			$("#count").text(msg.data);
+			console.log("recieve: " + msg.data);
+		};
+		ws.onclose = function() {
+			console.log("disconnect");
+		};
+		ws.onerror = function(err) {
+			console.log("error: " + err);
+		};
+		ws.onopen = function() {
+			console.log("connect");
+		};
+	</script>
+</head>
+<body>
+	<p>現在ページを閲覧している人の数は <span id="count"></span>人です．<p>
+</body>
+</html>
